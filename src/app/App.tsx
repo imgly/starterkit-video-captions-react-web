@@ -214,8 +214,7 @@ export function App({ editorConfig }: AppProps) {
             cesdk.engine.block.setPlaybackTime(preCaptionedPage, 0);
           }
 
-          const captionTrack =
-            cesdk.engine.block.findByType('captionTrack')[0];
+          const captionTrack = cesdk.engine.block.findByType('captionTrack')[0];
           if (captionTrack) {
             cesdk.engine.block.findAllSelected().forEach((block) => {
               cesdk.engine.block.setSelected(block, false);
