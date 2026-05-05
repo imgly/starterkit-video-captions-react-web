@@ -66,18 +66,6 @@ export function App({ editorConfig }: AppProps) {
     async (cesdk: CreativeEditorSDK) => {
       (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
 
-      cesdk.ui.registerComponent(
-        'ly.img.close.navigationBar',
-        ({ builder }) => {
-          builder.Button('close', {
-            label: 'common.close',
-            icon: '@imgly/Cross',
-            variant: 'regular',
-            onClick: () => closeEditorRef.current()
-          });
-        }
-      );
-
       switch (editorMode) {
         case 'autocaption': {
           await initVideoCaptionsAutocaptionEditor(cesdk);
@@ -91,31 +79,18 @@ export function App({ editorConfig }: AppProps) {
             cesdk.engine.block.setPlaybackTime(autocaptionPage, 0);
           }
 
-          const autocaptionNavOrder = cesdk.ui.getComponentOrder({
-            in: 'ly.img.navigation.bar'
-          });
-          cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
-            { id: 'ly.img.close.navigationBar' },
-            ...autocaptionNavOrder.filter(
-              (item) =>
-                ![
-                  'ly.img.close.navigationBar',
-                  'ly.img.preview.navigationBar'
-                ].includes(item.id)
-            ),
+          cesdk.ui.insertOrderComponent(
             {
-              id: 'ly.img.exportVideo.navigationBar',
-              key: 'actions.export.video',
-              color: 'accent',
-              icon: '@imgly/Video',
-              label: 'actions.export.video',
-              onClick: async () => {
-                await cesdk.actions.run('exportDesign', {
-                  mimeType: 'video/mp4'
-                });
+              in: 'ly.img.navigation.bar',
+              position: 'start'
+            },
+            [
+              {
+                id: 'ly.img.close.navigationBar',
+                onClick: () => closeEditorRef.current()
               }
-            }
-          ]);
+            ]
+          );
 
           cesdk.ui.openPanel('//ly.img.panel/inspector/caption');
           break;
@@ -132,31 +107,18 @@ export function App({ editorConfig }: AppProps) {
             en: { 'actions.export.video': 'Export Video' }
           });
 
-          const blankNavOrder = cesdk.ui.getComponentOrder({
-            in: 'ly.img.navigation.bar'
-          });
-          cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
-            { id: 'ly.img.close.navigationBar' },
-            ...blankNavOrder.filter(
-              (item) =>
-                ![
-                  'ly.img.close.navigationBar',
-                  'ly.img.preview.navigationBar'
-                ].includes(item.id)
-            ),
+          cesdk.ui.insertOrderComponent(
             {
-              id: 'ly.img.exportVideo.navigationBar',
-              key: 'actions.export.video',
-              color: 'accent',
-              icon: '@imgly/Video',
-              label: 'actions.export.video',
-              onClick: async () => {
-                await cesdk.actions.run('exportDesign', {
-                  mimeType: 'video/mp4'
-                });
+              in: 'ly.img.navigation.bar',
+              position: 'start'
+            },
+            [
+              {
+                id: 'ly.img.close.navigationBar',
+                onClick: () => closeEditorRef.current()
               }
-            }
-          ]);
+            ]
+          );
 
           cesdk.ui.openPanel('//ly.img.panel/inspector/caption');
           break;
@@ -173,31 +135,18 @@ export function App({ editorConfig }: AppProps) {
             cesdk.engine.block.setPlaybackTime(importPage, 0);
           }
 
-          const importNavOrder = cesdk.ui.getComponentOrder({
-            in: 'ly.img.navigation.bar'
-          });
-          cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
-            { id: 'ly.img.close.navigationBar' },
-            ...importNavOrder.filter(
-              (item) =>
-                ![
-                  'ly.img.close.navigationBar',
-                  'ly.img.preview.navigationBar'
-                ].includes(item.id)
-            ),
+          cesdk.ui.insertOrderComponent(
             {
-              id: 'ly.img.exportVideo.navigationBar',
-              key: 'actions.export.video',
-              color: 'accent',
-              icon: '@imgly/Video',
-              label: 'actions.export.video',
-              onClick: async () => {
-                await cesdk.actions.run('exportDesign', {
-                  mimeType: 'video/mp4'
-                });
+              in: 'ly.img.navigation.bar',
+              position: 'start'
+            },
+            [
+              {
+                id: 'ly.img.close.navigationBar',
+                onClick: () => closeEditorRef.current()
               }
-            }
-          ]);
+            ]
+          );
 
           cesdk.ui.openPanel('//ly.img.panel/inspector/caption');
           break;
@@ -214,8 +163,7 @@ export function App({ editorConfig }: AppProps) {
             cesdk.engine.block.setPlaybackTime(preCaptionedPage, 0);
           }
 
-          const captionTrack =
-            cesdk.engine.block.findByType('captionTrack')[0];
+          const captionTrack = cesdk.engine.block.findByType('captionTrack')[0];
           if (captionTrack) {
             cesdk.engine.block.findAllSelected().forEach((block) => {
               cesdk.engine.block.setSelected(block, false);
@@ -226,31 +174,18 @@ export function App({ editorConfig }: AppProps) {
             }
           }
 
-          const preCaptionedNavOrder = cesdk.ui.getComponentOrder({
-            in: 'ly.img.navigation.bar'
-          });
-          cesdk.ui.setComponentOrder({ in: 'ly.img.navigation.bar' }, [
-            { id: 'ly.img.close.navigationBar' },
-            ...preCaptionedNavOrder.filter(
-              (item) =>
-                ![
-                  'ly.img.close.navigationBar',
-                  'ly.img.preview.navigationBar'
-                ].includes(item.id)
-            ),
+          cesdk.ui.insertOrderComponent(
             {
-              id: 'ly.img.exportVideo.navigationBar',
-              key: 'actions.export.video',
-              color: 'accent',
-              icon: '@imgly/Video',
-              label: 'actions.export.video',
-              onClick: async () => {
-                await cesdk.actions.run('exportDesign', {
-                  mimeType: 'video/mp4'
-                });
+              in: 'ly.img.navigation.bar',
+              position: 'start'
+            },
+            [
+              {
+                id: 'ly.img.close.navigationBar',
+                onClick: () => closeEditorRef.current()
               }
-            }
-          ]);
+            ]
+          );
 
           cesdk.ui.openPanel('//ly.img.panel/inspector/caption');
           break;
