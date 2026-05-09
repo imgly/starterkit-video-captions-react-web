@@ -1,38 +1,35 @@
 /**
  * CE.SDK Video Captions Starterkit - React Entry Point
  *
- * Add and edit video captions with auto-captioning support.
+ * Demonstrates video captioning with multiple modes:
+ * - AI Auto Captions: Generate captions with AI
+ * - Blank: Start with empty editor
+ * - Import: Import SRT caption files
+ * - Pre-captioned: Edit existing captions
  *
  * @see https://img.ly/docs/cesdk/js/getting-started/
  */
 
-import type { Configuration } from '@cesdk/cesdk-js';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import type { Configuration } from '@cesdk/cesdk-js';
 
+import './app/global.css';
 import { App } from './app/App';
 
-// ============================================================================
-// Configuration
-// ============================================================================
-
-const config: Configuration = {
+export const editorConfig: Configuration = {
   userId: 'starterkit-video-captions-user',
 
-  // Local assets
-  // baseURL: `/assets/`,
+  featureFlags: {
+    archiveSceneEnabled: true
+  },
 
-  // License key (required for production)
-  // license: 'YOUR_LICENSE_KEY',
+  // Local assets for development
+
 };
 
-// ============================================================================
-// Initialize React Application
-// ============================================================================
-
-const container = document.getElementById('root');
-if (!container) {
-  throw new Error('Root container not found');
-}
-
-const root = createRoot(container);
-root.render(<App editorConfig={config} />);
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App editorConfig={editorConfig} />
+  </StrictMode>
+);

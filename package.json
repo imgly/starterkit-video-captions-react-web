@@ -9,8 +9,8 @@
     "check:syntax": "tsc --noEmit"
   },
   "dependencies": {
-    "@cesdk/cesdk-js": "latest",
-    "@imgly/plugin-autocaption-web": "latest",
+    "@cesdk/cesdk-js": "^1.75.0-rc.4",
+    "@imgly/plugin-autocaption-web": "^1.74.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
