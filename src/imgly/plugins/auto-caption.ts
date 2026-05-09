@@ -10,7 +10,7 @@
 import AutocaptionPlugin from '@imgly/plugin-autocaption-web';
 import { ElevenLabsScribeV2 } from '@imgly/plugin-autocaption-web/fal-ai';
 
-let AUTOCAPTION_PROXY_URL = import.meta.env.VITE_AUTOCAPTION_PROXY_URL || '';
+let AUTOCAPTION_PROXY_URL = '';
 
 
 /**
