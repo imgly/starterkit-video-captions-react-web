@@ -10,11 +10,12 @@
  * @see https://img.ly/docs/cesdk/js/getting-started/
  */
 
-import CreativeEditorSDK from '@cesdk/cesdk-js';
+import type CreativeEditorSDK from '@cesdk/cesdk-js';
 
 import {
   BlurAssetSource,
   CaptionPresetsAssetSource,
+  ImageColorsAssetSource,
   ColorPaletteAssetSource,
   CropPresetsAssetSource,
   DemoAssetSources,
@@ -61,6 +62,7 @@ export async function initVideoCaptionsAutocaptionEditor(
   // Add asset source plugins
   await cesdk.addPlugin(new BlurAssetSource());
   await cesdk.addPlugin(new CaptionPresetsAssetSource());
+  await cesdk.addPlugin(new ImageColorsAssetSource());
   await cesdk.addPlugin(new ColorPaletteAssetSource());
   await cesdk.addPlugin(new CropPresetsAssetSource());
   await cesdk.addPlugin(
@@ -125,6 +127,7 @@ export async function initVideoCaptionsBlankEditor(cesdk: CreativeEditorSDK) {
   // Add asset source plugins
   await cesdk.addPlugin(new BlurAssetSource());
   await cesdk.addPlugin(new CaptionPresetsAssetSource());
+  await cesdk.addPlugin(new ImageColorsAssetSource());
   await cesdk.addPlugin(new ColorPaletteAssetSource());
   await cesdk.addPlugin(new CropPresetsAssetSource());
   await cesdk.addPlugin(
@@ -186,6 +189,7 @@ export async function initVideoCaptionsImportEditor(cesdk: CreativeEditorSDK) {
   // Add asset source plugins
   await cesdk.addPlugin(new BlurAssetSource());
   await cesdk.addPlugin(new CaptionPresetsAssetSource());
+  await cesdk.addPlugin(new ImageColorsAssetSource());
   await cesdk.addPlugin(new ColorPaletteAssetSource());
   await cesdk.addPlugin(new CropPresetsAssetSource());
   await cesdk.addPlugin(
@@ -250,6 +254,7 @@ export async function initVideoCaptionsPreCaptionedEditor(
   // Add asset source plugins
   await cesdk.addPlugin(new BlurAssetSource());
   await cesdk.addPlugin(new CaptionPresetsAssetSource());
+  await cesdk.addPlugin(new ImageColorsAssetSource());
   await cesdk.addPlugin(new ColorPaletteAssetSource());
   await cesdk.addPlugin(new CropPresetsAssetSource());
   await cesdk.addPlugin(
