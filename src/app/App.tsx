@@ -4,7 +4,7 @@
  * Provides mode selection and editor integration for video captioning.
  */
 
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import CreativeEditor from '@cesdk/cesdk-js/react';
 import type CreativeEditorSDK from '@cesdk/cesdk-js';
 import type { Configuration } from '@cesdk/cesdk-js';
@@ -19,6 +19,7 @@ import {
 
 import styles from './App.module.css';
 
+
 /**
  * Demo assets for this example (images, scene archives, …) are loaded from the
  * IMG.LY CDN by default. To host them yourself, copy this kit's asset
@@ -28,7 +29,7 @@ import styles from './App.module.css';
  */
 export const DEMO_ASSETS_BASE_URL: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.81.1/starterkit-video-captions';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.0-rc.2/starterkit-video-captions';
 
 interface AppProps {
   editorConfig: Configuration;
@@ -81,7 +82,7 @@ export function App({ editorConfig }: AppProps) {
           await initVideoCaptionsAutocaptionEditor(cesdk);
 
           await cesdk.load(
-            `${DEMO_ASSETS_BASE_URL}/assets/autocaption.archive.zip`
+            `${DEMO_ASSETS_BASE_URL}/assets/autocaption/scene.scene`
           );
 
           const autocaptionPage = cesdk.engine.scene.getCurrentPage();
@@ -109,7 +110,6 @@ export function App({ editorConfig }: AppProps) {
           await initVideoCaptionsBlankEditor(cesdk);
 
           await cesdk.actions.run('scene.create', {
-            mode: 'Video',
             page: { width: 1280, height: 720, unit: 'Pixel' }
           });
 
@@ -137,7 +137,7 @@ export function App({ editorConfig }: AppProps) {
           await initVideoCaptionsImportEditor(cesdk);
 
           await cesdk.load(
-            `${DEMO_ASSETS_BASE_URL}/assets/captions.archive`
+            `${DEMO_ASSETS_BASE_URL}/assets/captions/scene.scene`
           );
 
           const importPage = cesdk.engine.scene.getCurrentPage();
@@ -165,7 +165,7 @@ export function App({ editorConfig }: AppProps) {
           await initVideoCaptionsPreCaptionedEditor(cesdk);
 
           await cesdk.load(
-            `${DEMO_ASSETS_BASE_URL}/assets/captions-pre-captioned.archive`
+            `${DEMO_ASSETS_BASE_URL}/assets/captions-pre-captioned/scene.scene`
           );
 
           const preCaptionedPage = cesdk.engine.scene.getCurrentPage();
