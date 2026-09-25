@@ -18,18 +18,8 @@ import {
 } from '../imgly';
 
 import styles from './App.module.css';
+import { DEMO_ASSETS_BASE_URL } from '../imgly/demo-assets';
 
-
-/**
- * Demo assets for this example (images, scene archives, …) are loaded from the
- * IMG.LY CDN by default. To host them yourself, copy this kit's asset
- * folder to your own CDN or server and change this constant — or set it to
- * `''` and place the files in this app's `public/` directory. No trailing
- * slash.
- */
-export const DEMO_ASSETS_BASE_URL: string =
-  import.meta.env.VITE_DEMO_ASSETS_BASE_URL ||
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.82.1/starterkit-video-captions';
 
 interface AppProps {
   editorConfig: Configuration;
@@ -75,7 +65,6 @@ export function App({ editorConfig }: AppProps) {
 
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
-      (window as unknown as { cesdk: CreativeEditorSDK }).cesdk = cesdk;
 
       switch (editorMode) {
         case 'autocaption': {

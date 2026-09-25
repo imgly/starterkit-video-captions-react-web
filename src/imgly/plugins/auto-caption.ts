@@ -10,8 +10,12 @@
 import AutocaptionPlugin from '@imgly/plugin-autocaption-web';
 import { ElevenLabsScribeV2 } from '@imgly/plugin-autocaption-web/fal-ai';
 
-let AUTOCAPTION_PROXY_URL = '';
-
+/**
+ * Proxy that adds your fal.ai key server-side. Set `VITE_AUTOCAPTION_PROXY_URL`
+ * for production — the default is IMG.LY's rate-limited demo proxy.
+ */
+const AUTOCAPTION_PROXY_URL: string =
+  'https://proxy.img.ly/api/proxy/falai';
 
 /**
  * Create the autocaption plugin with configured provider.
